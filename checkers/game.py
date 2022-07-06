@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from multiprocessing.connection import wait
 import pygame
 from .constant import RED, SQUARE_SIZE, WHITE, BLUE, CROWN, ROWS
@@ -8,6 +9,7 @@ class Game:
         self._init()
         self.win = win
         self.pulse = 0
+        self.end = 0
     def update(self):
 
         self.board.draw(self.win)
@@ -40,7 +42,11 @@ class Game:
         if piece != 0 and piece.color == self.turn:
             self.selected = piece
             self.valid_moves = self.board.get_valid_moves(piece)
-            
+            # print("=====",self.valid_moves)
+            if len(self.valid_moves) == 0:
+                # print("yes")
+                if self.board.red_left<=3: 
+                    self.end = 1
                         
             return True
         return False

@@ -52,6 +52,15 @@ def options(flag):
                 value, new_board = minimax(game.get_board(),3, WHITE, game)
                 game.ai_move(new_board)
 
+        if game.winner() != None:
+            print(game.winner())
+            
+            run = False
+            end()
+        if game.end == 1:
+            
+            end()
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -113,6 +122,35 @@ def main_menu():
                     sys.exit()
 
         pygame.display.update()
+
+
+
+def end():
+    while True:
+        SCREEN.blit(BG, (0, 0))
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        
+        END_TEXT = get_font(70).render("AI WINS", True, "#b68f40")
+        END_RECT = END_TEXT.get_rect(center=(WIDTH/2, HEIGHT*1/3+125))
+        SCREEN.blit(END_TEXT, END_RECT)
+        
+        
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    return
+
+        pygame.display.update()
+
+
+
+
+
+
+
 
 main_menu()
 
