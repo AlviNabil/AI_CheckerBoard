@@ -1,1 +1,1 @@
-"# AI_CheckerBoard" 
+# Artificial Intelligence Lab Project: AI CheckerBoard (CSE-4110)
